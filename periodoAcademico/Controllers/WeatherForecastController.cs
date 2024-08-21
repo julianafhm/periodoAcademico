@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace periodoAcademico.Controllers {
+namespace PeriodoAcademico.Controllers {
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase {
