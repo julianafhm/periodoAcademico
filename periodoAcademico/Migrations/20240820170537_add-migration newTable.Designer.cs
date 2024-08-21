@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using periodoAcademico.Data;
+using PeriodoAcademico.Data;
 
 #nullable disable
 
 namespace periodoAcademico.Migrations
 {
-    [DbContext(typeof(periodoContext))]
-    [Migration("20240819220449_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(PeriodoContext))]
+    [Migration("20240820170537_add-migration newTable")]
+    partial class addmigrationnewTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace periodoAcademico.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("periodoAcademico.Models.Aluno", b =>
+            modelBuilder.Entity("PeriodoAcademico.Models.Aluno", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,11 +43,14 @@ namespace periodoAcademico.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double?>("NotaProvaEspecial")
+                        .HasColumnType("float");
+
                     b.Property<double?>("NotaProvaFinal")
                         .HasColumnType("float");
 
-                    b.Property<int?>("TurmaId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("TurmaId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -56,22 +59,20 @@ namespace periodoAcademico.Migrations
                     b.ToTable("Alunos");
                 });
 
-            modelBuilder.Entity("periodoAcademico.Models.Prova", b =>
+            modelBuilder.Entity("PeriodoAcademico.Models.Prova", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AlunoId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Avaliacao")
+                        .HasColumnType("int");
+
                     b.Property<double>("Nota")
                         .HasColumnType("float");
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -80,13 +81,11 @@ namespace periodoAcademico.Migrations
                     b.ToTable("Provas");
                 });
 
-            modelBuilder.Entity("periodoAcademico.Models.Turma", b =>
+            modelBuilder.Entity("PeriodoAcademico.Models.Turma", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -97,16 +96,16 @@ namespace periodoAcademico.Migrations
                     b.ToTable("Turmas");
                 });
 
-            modelBuilder.Entity("periodoAcademico.Models.Aluno", b =>
+            modelBuilder.Entity("PeriodoAcademico.Models.Aluno", b =>
                 {
-                    b.HasOne("periodoAcademico.Models.Turma", null)
+                    b.HasOne("PeriodoAcademico.Models.Turma", null)
                         .WithMany("Alunos")
                         .HasForeignKey("TurmaId");
                 });
 
-            modelBuilder.Entity("periodoAcademico.Models.Prova", b =>
+            modelBuilder.Entity("PeriodoAcademico.Models.Prova", b =>
                 {
-                    b.HasOne("periodoAcademico.Models.Aluno", "Aluno")
+                    b.HasOne("PeriodoAcademico.Models.Aluno", "Aluno")
                         .WithMany("Provas")
                         .HasForeignKey("AlunoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -115,12 +114,12 @@ namespace periodoAcademico.Migrations
                     b.Navigation("Aluno");
                 });
 
-            modelBuilder.Entity("periodoAcademico.Models.Aluno", b =>
+            modelBuilder.Entity("PeriodoAcademico.Models.Aluno", b =>
                 {
                     b.Navigation("Provas");
                 });
 
-            modelBuilder.Entity("periodoAcademico.Models.Turma", b =>
+            modelBuilder.Entity("PeriodoAcademico.Models.Turma", b =>
                 {
                     b.Navigation("Alunos");
                 });

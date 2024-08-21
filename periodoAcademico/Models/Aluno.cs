@@ -1,4 +1,4 @@
-﻿namespace periodoAcademico.Models;
+﻿ssnamespace PeriodoAcademico.Models;
     public class Aluno 
     {
     public int Id { get; set; }

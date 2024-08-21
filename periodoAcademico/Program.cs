@@ -1,11 +1,13 @@
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
-using periodoAcademico.Data;
+using PeriodoAcademico.Data;
+using System.Globalization;
 
 internal class Program {
     private static void Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddDbContext<periodoContext>(options =>
+        builder.Services.AddDbContext<PeriodoContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         // Add services to the container.
@@ -17,17 +19,31 @@ internal class Program {
 
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment()) {
+        using (var scope = app.Services.CreateScope()) {
+
+            var services = scope.ServiceProvider;
+            var context = services.GetRequiredService<PeriodoContext>();
+
+            var supportedCultures = new[] { new CultureInfo("pt-BR") };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions {
+                DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture:"pt-BR"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
+
             app.UseSwagger();
             app.UseSwaggerUI();
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+            app.MapControllers();
+
         }
 
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.MapControllers();
 
         app.Run();
     }

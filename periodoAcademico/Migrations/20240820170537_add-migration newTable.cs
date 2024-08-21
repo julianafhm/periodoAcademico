@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace periodoAcademico.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class addmigrationnewTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,8 +15,7 @@ namespace periodoAcademico.Migrations
                 name: "Turmas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -32,8 +32,9 @@ namespace periodoAcademico.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MediaFinal = table.Column<double>(type: "float", nullable: false),
                     NotaProvaFinal = table.Column<double>(type: "float", nullable: true),
+                    NotaProvaEspecial = table.Column<double>(type: "float", nullable: true),
                     Aprovado = table.Column<bool>(type: "bit", nullable: false),
-                    TurmaId = table.Column<int>(type: "int", nullable: true)
+                    TurmaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,9 +50,8 @@ namespace periodoAcademico.Migrations
                 name: "Provas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Numero = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Avaliacao = table.Column<int>(type: "int", nullable: false),
                     Nota = table.Column<double>(type: "float", nullable: false),
                     AlunoId = table.Column<int>(type: "int", nullable: false)
                 },
