@@ -1,7 +1,8 @@
-﻿namespace PeriodoAcademico.Models;
+﻿namespace
+    PeriodoAcademico.Models;
 public class Aluno
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public required string Nome { get; set; }
     public List<Prova> Provas { get; set; } = new List<Prova>();
     public double? MediaFinal { get; set; }
