@@ -1,4 +1,4 @@
-﻿namespace periodoAcademico.CQRS.Commands.Prova.Criar
+﻿namespace periodoAcademico.CQRS.Commands.Alunos.Criar
 {
     public class CriarProvaCommands
     {
