@@ -6,10 +6,4 @@
     public double Nota { get; set; }
     public int AlunoId { get; set; }
 
-public Prova(Guid id, int tipoAvaliacao, double nota, int alunoId) {
-        Id = id;
-        Avaliacao = tipoAvaliacao;
-        Nota = nota;
-        AlunoId = alunoId;
-    }
 }
