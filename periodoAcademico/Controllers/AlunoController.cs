@@ -17,13 +17,13 @@ namespace periodoAcademico.Controllers {
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] CreateActivitySettingsCommand comand) {
-            return Created(string.Empty, await this.mediator.Send(comand));
+        public async Task<IActionResult> Create([FromBody] CreateActivitySettingsCommand command) {
+            return Created(string.Empty, await this.mediator.Send(command));
         }
 
         [HttpPost("delete")]
-        public async Task<IActionResult> Delete([FromBody] UpdateActivitySettingsCommand comand) {
-            return Ok(await this.mediator.Send(comand));    
+        public async Task<IActionResult> Delete([FromBody] UpdateActivitySettingsCommand command) {
+            return Ok(await this.mediator.Send(command));    
         }
     }
 }
