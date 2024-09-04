@@ -1,11 +1,15 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using periodoAcademico.CQRS.Commands.Alunos.Criar;
+using periodoAcademico.CQRS.Commands.Alunos.Update;
+using periodoAcademico.CQRS.Queries.Alunos.Listar;
 
 
 
 namespace periodoAcademico.Controllers {
 
-    [Route("api/activitySettings")]
+    [Route("api/aluno")]
+    [Produces("application/json")]
     [ApiController]
     public class AlunoController : ControllerBase {
 
@@ -15,15 +19,19 @@ namespace periodoAcademico.Controllers {
 
             this.mediator = mediator;
         }
-
-        [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] CreateActivitySettingsCommand command) {
+        [HttpGet("list")]
+        public async Task<IActionResult> Create([FromQuery] ListarAlunoQuery command) {
             return Created(string.Empty, await this.mediator.Send(command));
         }
 
-        [HttpPost("delete")]
-        public async Task<IActionResult> Delete([FromBody] UpdateActivitySettingsCommand command) {
-            return Ok(await this.mediator.Send(command));    
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] CriarAlunoCommand command) {
+            return Created(string.Empty, await this.mediator.Send(command));
         }
+
+        
+
     }
+
+         
 }

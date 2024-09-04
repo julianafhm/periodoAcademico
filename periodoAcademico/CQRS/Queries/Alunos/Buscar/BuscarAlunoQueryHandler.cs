@@ -17,8 +17,8 @@ namespace periodoAcademico.CQRS.Queries.Alunos.Buscar
         public async Task<List<Aluno>> Handle(BuscarAlunoQuery request, CancellationToken cancellationToken)
         {
 
-            var alunos = await periodoContext.Alunos.Where(x => x.Nome.StartsWith(request.Nome)).ToListAsync();
-
+            //  var alunos = await periodoContext.Alunos.Where(x => x.Nome.StartsWith(request.Nome)).ToListAsync();
+            List<Aluno> alunos = new List<Aluno>();
             return alunos;
 
         }

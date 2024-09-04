@@ -17,10 +17,9 @@ namespace periodoAcademico.CQRS.Commands.Alunos.Criar
         public async Task<bool> Handle(CriarAlunoCommand request, CancellationToken cancellationToken)
         {
 
-            var turma = await periodoContext.Turmas.FirstOrDefaultAsync(x => x.Id == request.IdTurma);
+            //var turma = await periodoContext.Turmas.FirstOrDefaultAsync(x => x.Id == request.IdTurma);
 
-            var aluno = new Aluno()
-            {
+            var aluno = new Aluno() {
                 Id = Guid.NewGuid(),
                 Nome = request.Nome,
                 IdTurma = request.IdTurma
@@ -32,5 +31,5 @@ namespace periodoAcademico.CQRS.Commands.Alunos.Criar
             return true;
             
         }
-    }
+    } 
 }

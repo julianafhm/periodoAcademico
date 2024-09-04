@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using periodoAcademico.CQRS.Commands.Alunos.Criar;
 using PeriodoAcademico.Data;
 using System.Globalization;
 
@@ -11,7 +13,7 @@ internal class Program {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         // Add services to the container.
-
+        builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies (typeof(CriarAlunoCommand).Assembly));
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -31,6 +33,8 @@ internal class Program {
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
+
+            
 
 
             app.UseSwagger();

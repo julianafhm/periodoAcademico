@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PeriodoAcademico.Data;
 
@@ -11,9 +12,11 @@ using PeriodoAcademico.Data;
 namespace periodoAcademico.Migrations
 {
     [DbContext(typeof(PeriodoContext))]
-    partial class PeriodoContextModelSnapshot : ModelSnapshot
+    [Migration("20240904025229_novasTabelas")]
+    partial class novasTabelas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
