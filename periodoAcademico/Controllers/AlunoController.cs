@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using periodoAcademico.CQRS.Commands.Alunos.Criar;
-using periodoAcademico.CQRS.Commands.Alunos.Update;
 using periodoAcademico.CQRS.Queries.Alunos.Listar;
 
 
