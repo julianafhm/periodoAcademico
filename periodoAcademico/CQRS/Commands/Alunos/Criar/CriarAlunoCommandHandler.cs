@@ -14,7 +14,7 @@ namespace periodoAcademico.CQRS.Commands.Alunos.Criar
             this.periodoContext = periodoContext;
         }
 
-        public async Task<bool> Handle(CriarAlunoCommand request, CancellationToken cancellationToken)
+        public async Task<bool>Handle(CriarAlunoCommand request, CancellationToken cancellationToken)
         {
 
             //var turma = await periodoContext.Turmas.FirstOrDefaultAsync(x => x.Id == request.IdTurma);

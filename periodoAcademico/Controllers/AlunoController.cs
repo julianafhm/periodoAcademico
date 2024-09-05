@@ -22,9 +22,10 @@ namespace periodoAcademico.Controllers
             this.mediator = mediator;
         }
         [HttpGet("list")]
-        public async Task<IActionResult> Create([FromQuery] ListarAlunoQuery command)
+        public async Task<IActionResult> List([FromQuery] ListarAlunoQuery command)
         {
-            return Created(string.Empty, await this.mediator.Send(command));
+           return Created(string.Empty, await this.mediator.Send(command));
+           
         }
 
         [HttpPost("create")]
